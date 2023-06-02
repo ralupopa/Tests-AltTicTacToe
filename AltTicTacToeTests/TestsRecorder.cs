@@ -7,6 +7,7 @@ public class MyTests
   public void OneTimeSetUp()
   {
     altDriver = new AltDriver();
+    altDriver.LoadScene("StartScene");
   }
 
   [OneTimeTearDown]
@@ -19,7 +20,9 @@ public class MyTests
   public void Test()
   {
     var PlayButton = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/PlayButton", enabled: false);
-    altDriver.Click(PlayButton.GetScreenPosition());
+    Assert.NotNull(PlayButton);
+    PlayButton.Click();
+
     var TextTMP = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/Board/Slots/Slot1/Text (TMP)", enabled: false);
     altDriver.Click(TextTMP.GetScreenPosition());
     var TextTMP2 = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/Board/Slots/Slot5/Text (TMP)", enabled: false);
@@ -38,7 +41,8 @@ public class MyTests
     altDriver.Click(WinInfo.GetScreenPosition());
     var WinInfo2 = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/GameOverPanel/WinInfo", enabled: false);
     altDriver.Click(WinInfo2.GetScreenPosition());
-    var BackButton = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/BottomButtons/BackButton", enabled: false);
-    altDriver.Click(BackButton.GetScreenPosition());
+
+    Assert.NotNull(WinInfo2);
+    Assert.That(WinInfo2.GetText(), Is.EqualTo("Player X wins!"));
   }
 }
