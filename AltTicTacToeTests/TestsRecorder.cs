@@ -1,6 +1,6 @@
 
 namespace AltTicTacToeTests;
-public class MyTests
+public class RecorderTests
 {
   private AltDriver altDriver;
   [OneTimeSetUp]
