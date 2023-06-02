@@ -6,6 +6,7 @@ public class FlowCasesTests: BaseTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
+        AltReversePortForwarding.ReversePortForwardingAndroid();
         altDriver = new AltDriver();
         helperMethods = new HelperMethods(altDriver);
     }
@@ -19,6 +20,7 @@ public class FlowCasesTests: BaseTest
     public void TearDown()
     {
         altDriver.Stop();
+        AltReversePortForwarding.RemoveReversePortForwardingAndroid();
     }
 
     [TestCase("Player X wins!", new string[] {"1", "5", "9", "7", "3", "6", "2"})]
