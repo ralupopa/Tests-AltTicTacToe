@@ -80,4 +80,31 @@ public class MyTests
     Assert.NotNull(WinInfo2);
     Assert.That(WinInfo2.GetText(), Is.EqualTo("It's a draw!"));
   }
+
+  [Test]
+  public void TestPlayerOWins()
+  {
+    var PlayButton = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/PlayButton", enabled: false);
+    Assert.NotNull(PlayButton);
+    PlayButton.Click();
+
+    var TextTMP2 = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/Board/Slots/Slot9/Text (TMP)", enabled: false);
+    altDriver.Click(TextTMP2.GetScreenPosition());
+    var TextTMP3 = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/Board/Slots/Slot7/Text (TMP)", enabled: false);
+    altDriver.Click(TextTMP3.GetScreenPosition());
+    var TextTMP4 = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/Board/Slots/Slot5/Text (TMP)", enabled: false);
+    altDriver.Click(TextTMP4.GetScreenPosition());
+    var TextTMP5 = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/Board/Slots/Slot1/Text (TMP)", enabled: false);
+    altDriver.Click(TextTMP5.GetScreenPosition());
+    var TextTMP6 = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/Board/Slots/Slot6/Text (TMP)", enabled: false);
+    altDriver.Click(TextTMP6.GetScreenPosition());
+    var TextTMP7 = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/Board/Slots/Slot4/Text (TMP)", enabled: false);
+    altDriver.Click(TextTMP7.GetScreenPosition());
+
+    var WinInfo = altDriver.WaitForObject(By.PATH,"/Canvas/MainContainer/GameOverPanel/WinInfo", enabled: false);
+    Assert.NotNull(WinInfo);
+    Assert.That(WinInfo.GetText(), Is.EqualTo("Player O wins!"));
+
+  }
+
 }
